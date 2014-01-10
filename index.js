@@ -9,6 +9,8 @@ function livereload(opts) {
   var snippet = "\n<script type=\"text/javascript\">document.write('<script src=\"" + src + "\" type=\"text/javascript\"><\\/script>')</script>\n";
   return function *livereload(next) {
     yield* next;
+    
+    if (!this.response.type) return;
 
     if (this.response.type.indexOf('html') < 0) return;
 
